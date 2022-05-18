@@ -1,4 +1,4 @@
-# kube-flipstarter
+# kube-imageproxy
 Kubernetes configurations for for imageproxy.
 
 ## Deployment
