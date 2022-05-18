@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: imageproxy
+  namespace: default
+spec:
+  ports:
+    - port: 492
+      targetPort: 8080
+  selector:
+    service: imageproxy
+  type: NodePort

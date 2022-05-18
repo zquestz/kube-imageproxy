@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  labels:
+    service: imageproxy
+    version: 0.11.2
+  name: imageproxy
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      service: imageproxy
+  template:
+    metadata:
+      labels:
+        service: imageproxy
+    spec:
+      containers:
+      - args:
+        - -cache
+        - /data
+        - -addr
+        - 0.0.0.0:8080
+        command: 
+        - /app/imageproxy
+        image: ghcr.io/willnorris/imageproxy
+        name: imageproxy
+        volumeMounts:
+          - mountPath: /data
+            name: imageproxy-data
+        resources:
+          requests:
+            memory: "64Mi"
+        ports:
+          - name: web
+            containerPort: 8080
+      restartPolicy: Always
+      volumes:
+        - name: imageproxy-data
+          gcePersistentDisk:
+            pdName: imageproxy-data
+            fsType: ext4
