@@ -4,7 +4,7 @@ metadata:
   namespace: default
   labels:
     service: imageproxy
-    version: 0.11.2
+    version: 0.11.3
   name: imageproxy
 spec:
   strategy:
@@ -25,8 +25,8 @@ spec:
         - -addr
         - 0.0.0.0:8080
         command: 
-        - /app/imageproxy
-        image: ghcr.io/willnorris/imageproxy
+        - /go/bin/imageproxy
+        image: zquestz/imageproxy
         name: imageproxy
         volumeMounts:
           - mountPath: /data
