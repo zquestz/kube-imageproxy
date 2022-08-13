@@ -33,7 +33,7 @@ spec:
             name: imageproxy-data
         resources:
           requests:
-            memory: "768Mi"
+            memory: "2Gi"
         ports:
           - name: web
             containerPort: 8080
